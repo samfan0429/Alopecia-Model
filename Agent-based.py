@@ -48,7 +48,7 @@ class SadHair(object):
                 if j>0.3*self.N and j<0.6*self.N and (i<0.6*self.N and i>0.4*self.N):
                     self.hairs[j,i].TCell+=0.4
                     self.hairs[j,i].artery = True
-    # Gets T-Cells spilled from back
+    # Gets T-Cells spilled from back by (25%)
     def toBack(self,j,i):
         if j-1 >=0:
             if self.hairs[j-1,i].TCell > 1.20:
@@ -56,7 +56,7 @@ class SadHair(object):
                 self.hairs[j-1,i].TCell-=self.hairs[j-1,i].TCell*0.25
                 return increase
         return 0
-    # Gets T-Cells spilled from front
+    # Gets T-Cells spilled from front by (25%)
     def toFront(self,j,i):
         if j+1 < self.N:
             if self.hairs[j+1,i].TCell > 1.20:
@@ -64,7 +64,7 @@ class SadHair(object):
                 self.hairs[j+1,i].TCell-=self.hairs[j+1,i].TCell*0.25
                 return increase
         return 0
-    # Gets T-Cells spilled from right
+    # Gets T-Cells spilled from right by (25%)
     def toRight(self,j,i):
         if i-1 < self.N:
             if self.hairs[j,i-1].TCell > 1.20:
@@ -72,7 +72,7 @@ class SadHair(object):
                 self.hairs[j,i-1].TCell-=self.hairs[j,i-1].TCell*0.25
                 return increase
         return 0
-    # Gets T-Cells spilled from left
+    # Gets T-Cells spilled from left by (25%)
     def toLeft(self,j,i):
         if i+1 < self.N:
             if self.hairs[j,i+1].TCell > 1.20:
@@ -103,7 +103,7 @@ class SadHair(object):
                     TCellGrowth+=self.toFront(j,i)
                 elif dir == 2:
                     TCellGrowth+=self.toRight(j,i)
-                else:
+                elif dir == 3:
                     TCellGrowth+=self.toLeft(j,i)
                 oneHair.TCellGrow(TCellGrowth)
     # Return T-Cell values for the grid.
